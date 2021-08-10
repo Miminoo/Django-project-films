@@ -3,7 +3,6 @@ import datetime
 from django.db.models.aggregates import Count
 from django.db.models.fields import CharField
 from django.http import request
-from django.urls.conf import include
 from django.contrib.auth.models import User
 
 

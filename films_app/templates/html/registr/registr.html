@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="container">
+    <div class="registr__items">
+
+    <h1 class='Registr_title'>Создание аккаунта</h1>
+    <p class='Sub__register-title'>Пожалуйста, зарегистрируйтесь, используя следующую форму:</p>
+    <form class='registr__item'action="." method="post">
+        {% csrf_token %}
+        {% for f in user_form %}
+        {% csrf_token %}
+        <div class='form__item'>
+            <label class='label__item'for="{{ f.id_for_label }}">{{f.label}}: </label>
+            <p class='content__item'>{{f}}</p>
+        </div>
+        {% endfor %}
+        <p><input class='registr__button' type="submit" value="Создать"></p>
+    </form>
+
+</div>
+</div>
+{% endblock %}
+{% block footer %}
+  
+{% endblock footer %}

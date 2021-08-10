@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form action="" method="POST" enctype="multipart/form-data">
+
+    <div class="container">
+      <h1 class='title__addfilm' style="color:#fff;">Редактирование фильма</h1>
+<h4 class='sub_title__addfilm' style='color:#fff;'>Содержимое страницы</h4>
+       {% csrf_token %}
+{% for f in form %}
+<div class='form__item'>
+    <label class='label__item'for="{{ f.id_for_label }}">{{f.label}}: </label>
+    <p class='content__item'>{{f}}</p>
+</div>
+{% endfor %}
+
+
+<button class='add__film'type="submit"> Изменить </button>
+    </div>
+{% endblock content %}
+{% block footer %} 
+  
+{% endblock footer %}

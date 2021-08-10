@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="films">
+    <div class="container">
+        <p class='films__logo' href="#">Избранное</p>
+    <div class="films__items">
+        {% for item in list_films %}
+        <div class="film__item">
+            <a href="{% url 'discription_item' item.slug %}"><p class="film__name"> {{item.name}} </p></a>
+            <a href="{% url 'discription_item' item.slug %}"><img class="film__photo"src="{{ item.photoURL }}" alt=""></a>
+            <p style="text-align: center;">{{ item.years }} </p>
+            <form action="{% url 'delfilmfavor' item.pk %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class='buttom_user_film'>Удалить</button>
+            </form>
+
+        </div>
+        {% endfor %}
+            </span>
+        </div>
+    </div>
+</div>
+</div>
+{% for i in all_films %}
+    {{i.name }}
+    {{i.years}}
+{% endfor %}
+
+{% endblock content %}
+
+{% block footer %}
+  
+{% endblock footer %}

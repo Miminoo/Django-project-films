@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+<!-- City -->
+
+{% block content %}
+{% include "inc/_category.html" %}
+{% include "inc/_filtrs.html" %}  
+
+<div class="discription__films">
+    <div class="container">
+    <div class="disc_films__items">
+    
+        <div class="disc_film__item">
+        {% for item in janr_items %}
+            <p class="disc_film__name"> {{item.name}} </p>
+            <img class="disc_film__photo"src="{{ item.photoURL }}" alt="">
+
+            <p class='title__year'> Год: </p> 
+                <p class='film__year'> {{ item.years }} </p>
+
+            <p class='title__country'>Страна: </p> 
+                <p class='film__country'>{{item.country}}</p>
+               
+                <p class='title__country'>В ролях: </p> 
+                <p href='#' class='film__country'> {% for i in actor_films %} <a class="film__actor" style='color:blue;' href="{% url 'show_about_actor' i %}">{{ i | capfirst }},</a>{% endfor %}</>
+                    <p class='title__country'>Авторы: </p> 
+                    <p href='#' class='film__country'> {% for i in rejicer_films %} <a class="film__actor" style='color:blue;' href="{% url 'show_about_rejicer' i %}">{{ i | capfirst }},</a>{% endfor %}</> 
+                <p class='title__created_at'>Дата пубдикации: </p> 
+                <p class='film_at'>{{item.created_at}}</p>
+            <p class='title__discrip'>Описание: </p> 
+                <p class='film__discrip'>{{ item.discription }}</p>
+                {% if user.is_authenticated %}
+            <div class="button__items">
+                <form method="POST" action="{% url 'addfilmtofavor' item.pk %}">
+                    {% csrf_token %}
+                    <button type="submit" class='add__favor'>Добавить в избранное</button>
+                </form>
+                {%endif%}
+                {% if user.is_authenticated and user.is_superuser %}
+            <p><a href="{% url 'edit' item.slug %}" style="color: blue; font-size:24px;">Изменить</a> </p>
+            <p><a href="{% url 'delet' item.slug %}" style="color: blue; font-size:24px;">Удалить</a> </p>
+            {%endif%}
+        </div>
+               
+
+        </div>
+
+        <div class="discrip__video">
+        <video id=”player” сlass="video"controls preload="auto" width="1000px" height="550px" poster="{{item.posterURL}}"data-setup="{}">
+            <source src="{{ item.videoURL }}" type='video/ogg;'>
+            <source src="{{ item.videoURL }}" type='video/mp4;'>
+            <source src="{{ item.videoURL }}" type='video/webm;'>
+           </video>
+        {% endfor %}
+        </div>
+</div>
+</div>
+
+{% endblock content %}

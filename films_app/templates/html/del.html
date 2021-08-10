@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <button type='submit' style="padding: 15px 50px;
+    font-size:24px;
+    background-color: blue;
+    color:#fff;
+    margin:25% auto;
+    ">Удалить</button>
+</form>
+
+</div>
+{% endblock content %}
+{% block footer %}
+  
+{% endblock footer %}

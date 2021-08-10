@@ -1,0 +1,19 @@
+<div class="films__filtrs">
+    <h3 class='filtr__name'>Фильтры:</h3>
+    <nav class="filtrs__menu">
+        <ul class="filtrs__items">
+            <a class='filtrs__title'>По году</a>
+            {% for year in filtr_years %}
+            <li class="filtrs__item">
+                <a href="{% url 'filtrs_items' year %}">{{ year }}</a>
+            </li>
+            {% endfor %}
+            <a class='filtrs__title'>По стране</a>
+            {% for country in filtr_country %}
+            <li class="filtrs__item">
+                <a href="{% url 'filtrs_items_c' country %}">{{ country }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </nav>
+</div>

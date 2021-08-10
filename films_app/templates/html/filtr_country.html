@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-------------- Class Category -------------->   
+{% include "inc/_category.html" %}
+
+<!-------------- Class Filtrs -------------->   
+{% include "inc/_filtrs.html" %}
+
+<div class="films">
+    <div class="container">
+    <div class="films__items">
+        <p class='films__logo' href="#">Список фильмов</p>
+        {% for item in film_items_c %}
+        <div class="film__item">
+            <a href="{% url 'discription_item' item.slug %}"><p class="film__name"> {{item.name}} </p></a>
+            <a href="{% url 'discription_item' item.slug %}"><img class="film__photo"src="{{ item.photo.url }}" alt=""></a>
+            <p style="text-align: center;">{{ item.years }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</div>
+  
+{% endblock content %}

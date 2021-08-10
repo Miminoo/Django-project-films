@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class='disc__actor'>
+    <div class="container">
+        <div class="actor__disc">
+            {% for i in rejicer %}
+            <h1 class='d_main__title'>{{i.fullName}}</h1>
+            <ul class="actor__items_d">
+                
+                  
+               
+                <li class="actor__item_d">
+                    <img class='d__pic'src="{{ i.picture.url }}" alt="#">
+                    <p class="d_actor__name">ФИО: {{i.fullName}}</p>
+                    <p class="d_actor_bd">Дата рождения: {{i.birthday_date}}</p>
+                    <p class="d_actor_growth">Рост: {{i.growth}} см</p>
+                    <p class="d_actor_bp">Место рождения: {{i.birthday_place}}</p>
+                    <p class="d_count_films">Количество фильмов с его участием на сайте: {{film_count}}</p>
+                    Список фильмов:
+                    <p class="d_list_film">
+                        {% for item in all_rejicer_film %}
+                          {{item}} <br>
+                        {% endfor %}
+                    </p>
+                </li>
+
+
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
+{% block footer %}
+  
+{% endblock footer %}

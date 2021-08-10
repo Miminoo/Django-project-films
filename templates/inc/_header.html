@@ -1,0 +1,27 @@
+<header class="header">
+    <nav class="menu">
+        <a class="logo__header"href="{% url 'show_items'%}">JustFilms</a>
+        <ul class="menu__items">
+
+
+            <li class="menu__item"> <a href="{% url 'show_items'%}"> Фильмы  </a> </li>
+            <li class="menu__item"> <a href="{% url 'show_actors' %}"> Актёры </a> </li>
+            <li class="menu__item"> <a href="{%url 'show_rejicer' %}"> Режисёры </a> </li>
+            
+            {% if user.is_authenticated %}
+            {% if user.is_superuser %}
+            <li class="menu__item"> <a href="{% url 'addfilm'%}"> Добавить запись  </a> </li>
+            {% endif %}
+            <li class="menu__item"> <a href="{% url 'user_films'%}"> Избранное </a> </li>
+            <li class="menu__item"><a href="#">Пользователь: {{ user.get_username }}</a> </li>
+        
+    
+            <li class="menu__item"><a href="{% url 'logout' %}?next={{request.path}}">Выйти</a></li>
+            {% else %}
+            <li class="menu__item"> <a href="{% url 'login'%}?next={{request.path}}"> Авторизация</a> </li>
+            <li class="menu__item"> <a href="{% url 'register'%}"> Регистрация </a> </li>
+            {% endif %}
+            
+        </ul>
+    </nav>
+</header>

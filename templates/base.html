@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>JustFilms</title>
+</head>
+<body>
+    <!-------------- HEADER -------------->
+    {% include "inc/_header.html" %}
+
+        <!-------------- CONTENT -------------->
+        {% block content %}
+        
+        <!-------------- Class Category -------------->
+            {% include "inc/_category.html" %}
+
+        <!-------------- Class Filtrs -------------->   
+            {% include "inc/_filtrs.html" %}
+
+        <!-------------- Class films -------------->
+            {% include "inc/_films.html" %}
+
+            
+        {% endblock content %}
+        <!-------------- END BLOCK CONTENT -------------->
+
+        <!-------------- FOOTER -------------->
+        {% block footer %}
+        {% include "inc/_footer.html" %}
+        {% endblock footer %}
+</body>
+</html>

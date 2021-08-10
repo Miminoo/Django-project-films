@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-------------- Class Category -------------->   
+<div class="films__category">
+    <h3 class='category__name'>Категории:</h3>
+    <nav class="category__menu">
+        <ul class="category__items">
+            {% for item, value in janrs_count.items %}
+            <li class="category__item">
+                <a href="{% url 'janr_items' item.pk %}">{{item}}</a><a class='janr_count'>{{value}}</a>
+            </li>
+            {% endfor %}      
+            <div class="new_films" style='text-align:center;'>
+                <p class='new__fname' style='
+                color:rgb(243, 186, 29);
+                font-size: 20px;
+                margin-top: 15px;
+                font-weight: bold;
+                text-align: center;
+                margin-bottom: 25px;
+                '>Новинки:</p>
+                {% for i in new_films %}
+                <li class="new__fitem" style="
+                text-align: center;
+                margin-top: 5px;
+                color:#fff;
+                ">
+                    <a href="{% url 'discription_item' i.slug %}">{{i.name}}</a>
+                </li>
+                <a href="{% url 'discription_item' i.slug %}"><img class='new_fphoto' src="{{ i.photo.url }}" alt="" style="
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    width:100px;
+                    height:100px;
+                    text-align: center;
+                    "> </a>
+                {% endfor %}
+            </div>     
+        </ul>
+        
+    </nav>
+</div>
+
+<!-------------- Class Filtrs -------------->   
+{% include "inc/_filtrs.html" %}
+
+<div class="films">
+    <div class="container">
+    <div class="films__items">
+        <p class='films__logo' href="#">Количество фильмов в категории: ({{count_films}}) </p>
+        {% for item in janr_items %}
+        <div class="film__item">
+            <a href="{% url 'discription_item' item.slug %}"><p class="film__name"> {{item.name}}</p></a>
+            <a href="{% url 'discription_item' item.slug %}"><img class="film__photo"src="{{ item.photo.url }}" alt=""></a>
+            <p style="text-align: center;">{{ item.years }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</div>
+  
+{% endblock content %}
+

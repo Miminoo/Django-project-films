@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+{% if form.errors %}
+  <p>Ваше имя или пароль не совпадает. Пожалуйста проверьте введенные данные.</p>
+{% endif %}
+
+{% if next %}
+  {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+  {% else %}
+    <p class='login__title'>Авторизация</p>
+  {% endif %}
+{% endif %}
+<div class="login__item">
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+<table>
+
+<tr class="login_username">
+  <td style="color:#fff;">Логин: </td>
+  <td>{{ form.username }}</td>
+</tr>
+
+<tr class="login_password">
+  <td style="color:#fff;">Пароль:  </td>
+  <td>{{ form.password }}</td>
+</tr>
+</table>
+
+<input type="submit" value="login" class="login__button"/>
+<input type="hidden" name="next" value="{{ next }}" />
+</form>
+
+{# Assumes you setup the password_reset view in your URLconf #}
+<p><a href="{% url 'password_reset' %}">Забыли пароль?</a></p>
+</div></div>
+{% endblock %}
+{% block footer %}
+  
+{% endblock footer %}
